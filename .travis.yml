@@ -1,21 +1,30 @@
----
 language: node_js
 node_js:
-  - "6"
-
+- '6'
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 sudo: false
-
 cache:
   directories:
-    - $HOME/.npm
-
+  - "$HOME/.npm"
 before_install:
-  - npm config set spin false
-  - npm install -g phantomjs-prebuilt
-  - phantomjs --version
-
+- npm config set spin false
+- npm install -g phantomjs-prebuilt
+- phantomjs --version
 install:
-  - npm install
-
+- npm install
 script:
-  - npm test
+- npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: iSFhtcMCiTXP5oN3wHdg9jN9DX8cMhksSe8QRpo2SMCJ08Q3fZKoOc3uYNB2aj/0aFP+HZbW+HMWdEQKmXazNX3tijeK46faONeAujaR86MyeTk63m9Uhv9PiXtcV4mgym//BvUEhUgYAj/qYrVWixvqzlM0ZHfWmRasYMkH5tToMUWnMH+VaWtXa8XleREjSmwJ4JeGa7PDIout3Apq9QSDn11XN4bVMbnbag+E1unO305V50NUGZmm+30L+sQ0MNmhWHlbZacZNo19xKEl4j0+0Vg/1e7KZH+ER+vxHhWcKU0dW+7rmRmBVw9XJUo9IX258pedyo+ZfbQCWFndQpmzeV2Dq0fC+tvg/FQjo3YaF/AVzTGwz2GI1NJQ4Rs3BmNqW+1WhvWEacgx7yv/9/tMpoLkyvaMWdj6LE/NMeRFe2xtw9TtjRcYkq64+mhmZtdBHWJR3dEz12mMDlr464PAVCds93liDbDxl4UGqNwAnoH9gT2wYaq73KqJXphhmbOR3IotZxuHMV72IHWpiCGLMnQ29XBXGVgNhK3Orl3YWr820Ghw5ZBW/t+klLH3MTQQaiw9IrXH+SgPDNKmL7EJSO/fD7D3caFCG07XyT5kWtADvl+btEm24LPo9mUsIaiyFP+z35OWTD0OokTsaLfdU9cPI/3HLryOoyDvvlk=
+  app: PortfolioMix
+  on:
+    repo: Jrakkez/PortfolioMix
